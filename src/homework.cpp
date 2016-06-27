@@ -5,6 +5,7 @@
 #include <vector>
 #include <iomanip>
 
+
 using namespace std;
 
 //call executable and return std::out
@@ -16,7 +17,6 @@ void populate(std::string** target, int i, int j, string (*exec)(const char*));
 
 void runTests();
 
-using namespace std;
 
 int main(int argc, char* argv[])
 {
@@ -66,7 +66,11 @@ int main(int argc, char* argv[])
 void populate(string** target, int i, int j, string(*exec)(const char*))
 {
 	char cmd[100];
-	sprintf_s(cmd, "CallMe.exe %i %i", i, j);
+	#ifdef _WIN32
+		sprintf_s(cmd, "CallMe.exe %i %i", i, j);
+	#else
+		sprintf(cmd, "CallMe.exe %i %i", i , j);
+	#endif
 	std::string res = exec(cmd);
 	cout << res.c_str() << endl;
 	target[i][j] = (res.length() == 0) ? "-inf" : res; //nothing printed to std::out when segfault occurs
@@ -75,6 +79,7 @@ void populate(string** target, int i, int j, string(*exec)(const char*))
 #ifdef _WIN32
 #define popen _popen
 #define pclose _pclose
+#endif
 std::string exec(const char* cmd) 
 {
 	char buffer[128];
@@ -94,7 +99,7 @@ std::string exec(const char* cmd)
 	pclose(pipe);
 	return result.substr(0, result.length() - 1);
 }
-#endif
+
 
 string execMock(const char* cmd) {
 	return "PASS";
