@@ -31,8 +31,25 @@ int main(int argc, char* argv[])
 		return 0;
 	}
 
+	// purge input
+	if (argc == 2)
+	{
+		cerr << "Please provide nonzero N & M" << endl;
+		return 2;
+	}
+
 	int n = atoi(argv[1]);
 	int m = atoi(argv[2]);
+
+	// purge input
+	if (argc == 3)
+	{
+		if ((n == 0) || (m == 0))
+		{
+			cerr << "N & M should be nonzero" << endl;
+			return 3;
+		}
+	}
 
 	string** output = new string*[n];
 	for (int i = 0; i < n; i++)
