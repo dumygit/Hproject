@@ -86,7 +86,8 @@ void populate(string** target, int i, int j, string(*exec)(const char*))
 	#ifdef _WIN32
 		sprintf_s(cmd, "CallMe.exe %i %i", i, j);
 	#else
-		sprintf(cmd, "CallMe.exe %i %i", i , j);
+		//sprintf(cmd, "CallMe.exe %i %i", i , j);
+		sprintf(cmd, "~/Desktop/windows_code/src/te %i %i", i , j);
 	#endif
 	std::string res = exec(cmd);
 	cout << res.c_str() << endl;
