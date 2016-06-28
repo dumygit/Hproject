@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
 		return 0;
 	}
 
-	// purge input
+	// purge input - prevents segfault
 	if (argc == 2)
 	{
 		cerr << "Please provide nonzero N & M" << endl;
@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
 	int n = atoi(argv[1]);
 	int m = atoi(argv[2]);
 
-	// purge input
+	// purge input - prevents unexpected behaviour
 	if (argc == 3)
 	{
 		if ((n == 0) || (m == 0))
