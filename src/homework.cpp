@@ -122,6 +122,7 @@ std::string exec(const char* cmd)
 		throw;
 	}
 	pclose(pipe);
+	free(buffer);
 	return result.substr(0, result.length() - 1);
 }
 
