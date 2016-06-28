@@ -99,17 +99,25 @@ void populate(string** target, int i, int j, string(*exec)(const char*))
 #endif
 std::string exec(const char* cmd) 
 {
-	char buffer[128];
+	char * buffer = (char*)malloc(128 + 1);
 	std::string result = "";
 	FILE* pipe = popen(cmd, "r");
 	if (!pipe) throw std::runtime_error("popen() failed!");
 	try {
+		cout << "et" << endl;
 		while (!feof(pipe)) {
-			if (fgets(buffer, 128, pipe) != NULL)
+			cout << "w - " << pipe << endl;
+			if (fgets(buffer, 128 +1, pipe) != NULL)
+			{
+				cout << "buf" << endl;
 				result += buffer;
+				
+			}
 		}
+		cout << "pct" << endl;
 	}
 	catch (...) {
+		cout << "ct" << endl;
 		pclose(pipe);
 		throw;
 	}
