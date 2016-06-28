@@ -107,7 +107,7 @@ std::string exec(const char* cmd)
 		cout << "et" << endl;
 		while (!feof(pipe)) {
 			cout << "w - " << pipe << endl;
-			if (fgets(buffer, 128 +1, pipe) != NULL)
+			if (fgets(buffer, 128, pipe) != NULL)
 			{
 				cout << "buf" << endl;
 				result += buffer;
