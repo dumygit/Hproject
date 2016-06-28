@@ -87,6 +87,8 @@ void populate(string** target, int i, int j, string(*exec)(const char*))
 		sprintf_s(cmd, "CallMe.exe %i %i", i, j);
 	#else
 		//sprintf(cmd, "CallMe.exe %i %i", i , j);
+		// temporary - for testing only
+		// the file path points to the exe generated from g++ c_test.cpp
 		sprintf(cmd, "~/Desktop/windows_code/src/te %i %i", i , j);
 	#endif
 	std::string res = exec(cmd);
