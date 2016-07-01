@@ -84,12 +84,9 @@ void populate(string** target, int i, int j, string(*exec)(const char*))
 {
 	char cmd[100];
 	#ifdef _WIN32
-		sprintf_s(cmd, "CallMe.exe %i %i", i, j);
+		sprintf_s(cmd, "CallMe.exe %i %i", i , j);
 	#else
-		//sprintf(cmd, "CallMe.exe %i %i", i , j);
-		// temporary - for testing only
-		// the file path points to the exe generated from g++ c_test.cpp
-		sprintf(cmd, "~/Desktop/windows_code/src/te %i %i", i , j);
+		sprintf(cmd, "CallMe.exe %i %i", i , j);
 	#endif
 	std::string res = exec(cmd);
 	cout << res.c_str() << endl;
@@ -102,14 +99,16 @@ void populate(string** target, int i, int j, string(*exec)(const char*))
 #endif
 std::string exec(const char* cmd) 
 {
-	char buffer[128];
+	char * buffer = (char*)malloc(128* sizeof(char));
 	std::string result = "";
 	FILE* pipe = popen(cmd, "r");
 	if (!pipe) throw std::runtime_error("popen() failed!");
 	try {
 		while (!feof(pipe)) {
 			if (fgets(buffer, 128, pipe) != NULL)
-				result += buffer;
+			{
+				result += buffer;				
+			}
 		}
 	}
 	catch (...) {
@@ -117,6 +116,7 @@ std::string exec(const char* cmd)
 		throw;
 	}
 	pclose(pipe);
+	free(buffer);
 	return result.substr(0, result.length() - 1);
 }
 
