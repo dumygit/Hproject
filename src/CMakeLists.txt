@@ -5,11 +5,7 @@ add_executable (Caller homework.cpp)
 
 #set(CMAKE_CXX_FLAGS "-pthread -std=c++11")
 #add_definitions(${CMAKE_CXX_FLAGS})
-#set (CMAKE_CXX_FLAGS "-pthread -std=c++11")
-#add_definitions (${CMAKE_CXX_FLAGS})
-#set (CMAKE_CXX_FLAGS -pthread )
-#add_definitions (${CMAKE_CXX_FLAGS})
-#set (CMAKE_CXX_FLAGS -std=c++11 )
-#add_definitions (${CMAKE_CXX_FLAGS})
-add_definitions ( -std=c++11 -pthread)
+
 #CMAKE_CXX_FLAGS="-std=c++11 -pthread"
+
+add_definitions ( -std=c++11 -pthread -lprotobuf)
