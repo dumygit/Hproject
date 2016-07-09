@@ -1,0 +1,6 @@
+/home/mechanic/Desktop/wc/build/CMakeFiles/edit_cache.dir
+/home/mechanic/Desktop/wc/build/CMakeFiles/rebuild_cache.dir
+/home/mechanic/Desktop/wc/build/src/CMakeFiles/edit_cache.dir
+/home/mechanic/Desktop/wc/build/src/CMakeFiles/rebuild_cache.dir
+/home/mechanic/Desktop/wc/build/src/CMakeFiles/Caller.dir
+/home/mechanic/Desktop/wc/build/src/CMakeFiles/CallMe.dir

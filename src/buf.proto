@@ -1,5 +1,5 @@
 package thread_msg;
 
 message Thread_Data {
-	repeated string cluster = 1;
+	optional string cluster = 1;
 }

@@ -79,7 +79,7 @@ void protobuf_AddDesc_buf_2eproto() {
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\tbuf.proto\022\nthread_msg\"\036\n\013Thread_Data\022\017"
-    "\n\007cluster\030\001 \003(\t", 55);
+    "\n\007cluster\030\001 \001(\t", 55);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "buf.proto", &protobuf_RegisterTypes);
   Thread_Data::default_instance_ = new Thread_Data();
@@ -119,6 +119,7 @@ Thread_Data::Thread_Data(const Thread_Data& from)
 void Thread_Data::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
+  cluster_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -128,6 +129,9 @@ Thread_Data::~Thread_Data() {
 }
 
 void Thread_Data::SharedDtor() {
+  if (cluster_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete cluster_;
+  }
   if (this != default_instance_) {
   }
 }
@@ -154,7 +158,11 @@ Thread_Data* Thread_Data::New() const {
 }
 
 void Thread_Data::Clear() {
-  cluster_.Clear();
+  if (has_cluster()) {
+    if (cluster_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+      cluster_->clear();
+    }
+  }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -169,21 +177,18 @@ bool Thread_Data::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated string cluster = 1;
+      // optional string cluster = 1;
       case 1: {
         if (tag == 10) {
-         parse_cluster:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->add_cluster()));
+                input, this->mutable_cluster()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->cluster(this->cluster_size() - 1).data(),
-            this->cluster(this->cluster_size() - 1).length(),
+            this->cluster().data(), this->cluster().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
             "cluster");
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(10)) goto parse_cluster;
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -213,14 +218,14 @@ failure:
 void Thread_Data::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:thread_msg.Thread_Data)
-  // repeated string cluster = 1;
-  for (int i = 0; i < this->cluster_size(); i++) {
-  ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-    this->cluster(i).data(), this->cluster(i).length(),
-    ::google::protobuf::internal::WireFormat::SERIALIZE,
-    "cluster");
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      1, this->cluster(i), output);
+  // optional string cluster = 1;
+  if (has_cluster()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->cluster().data(), this->cluster().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "cluster");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->cluster(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -233,14 +238,15 @@ void Thread_Data::SerializeWithCachedSizes(
 ::google::protobuf::uint8* Thread_Data::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:thread_msg.Thread_Data)
-  // repeated string cluster = 1;
-  for (int i = 0; i < this->cluster_size(); i++) {
+  // optional string cluster = 1;
+  if (has_cluster()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->cluster(i).data(), this->cluster(i).length(),
+      this->cluster().data(), this->cluster().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
       "cluster");
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteStringToArray(1, this->cluster(i), target);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->cluster(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -254,13 +260,15 @@ void Thread_Data::SerializeWithCachedSizes(
 int Thread_Data::ByteSize() const {
   int total_size = 0;
 
-  // repeated string cluster = 1;
-  total_size += 1 * this->cluster_size();
-  for (int i = 0; i < this->cluster_size(); i++) {
-    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
-      this->cluster(i));
-  }
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // optional string cluster = 1;
+    if (has_cluster()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->cluster());
+    }
 
+  }
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -286,7 +294,11 @@ void Thread_Data::MergeFrom(const ::google::protobuf::Message& from) {
 
 void Thread_Data::MergeFrom(const Thread_Data& from) {
   GOOGLE_CHECK_NE(&from, this);
-  cluster_.MergeFrom(from.cluster_);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_cluster()) {
+      set_cluster(from.cluster());
+    }
+  }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -309,7 +321,7 @@ bool Thread_Data::IsInitialized() const {
 
 void Thread_Data::Swap(Thread_Data* other) {
   if (other != this) {
-    cluster_.Swap(&other->cluster_);
+    std::swap(cluster_, other->cluster_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

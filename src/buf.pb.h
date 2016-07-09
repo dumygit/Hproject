@@ -90,30 +90,28 @@ class Thread_Data : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // repeated string cluster = 1;
-  inline int cluster_size() const;
+  // optional string cluster = 1;
+  inline bool has_cluster() const;
   inline void clear_cluster();
   static const int kClusterFieldNumber = 1;
-  inline const ::std::string& cluster(int index) const;
-  inline ::std::string* mutable_cluster(int index);
-  inline void set_cluster(int index, const ::std::string& value);
-  inline void set_cluster(int index, const char* value);
-  inline void set_cluster(int index, const char* value, size_t size);
-  inline ::std::string* add_cluster();
-  inline void add_cluster(const ::std::string& value);
-  inline void add_cluster(const char* value);
-  inline void add_cluster(const char* value, size_t size);
-  inline const ::google::protobuf::RepeatedPtrField< ::std::string>& cluster() const;
-  inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_cluster();
+  inline const ::std::string& cluster() const;
+  inline void set_cluster(const ::std::string& value);
+  inline void set_cluster(const char* value);
+  inline void set_cluster(const char* value, size_t size);
+  inline ::std::string* mutable_cluster();
+  inline ::std::string* release_cluster();
+  inline void set_allocated_cluster(::std::string* cluster);
 
   // @@protoc_insertion_point(class_scope:thread_msg.Thread_Data)
  private:
+  inline void set_has_cluster();
+  inline void clear_has_cluster();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::std::string> cluster_;
+  ::std::string* cluster_;
   friend void  protobuf_AddDesc_buf_2eproto();
   friend void protobuf_AssignDesc_buf_2eproto();
   friend void protobuf_ShutdownFile_buf_2eproto();
@@ -128,58 +126,80 @@ class Thread_Data : public ::google::protobuf::Message {
 
 // Thread_Data
 
-// repeated string cluster = 1;
-inline int Thread_Data::cluster_size() const {
-  return cluster_.size();
+// optional string cluster = 1;
+inline bool Thread_Data::has_cluster() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Thread_Data::set_has_cluster() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Thread_Data::clear_has_cluster() {
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline void Thread_Data::clear_cluster() {
-  cluster_.Clear();
+  if (cluster_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    cluster_->clear();
+  }
+  clear_has_cluster();
 }
-inline const ::std::string& Thread_Data::cluster(int index) const {
+inline const ::std::string& Thread_Data::cluster() const {
   // @@protoc_insertion_point(field_get:thread_msg.Thread_Data.cluster)
-  return cluster_.Get(index);
+  return *cluster_;
 }
-inline ::std::string* Thread_Data::mutable_cluster(int index) {
-  // @@protoc_insertion_point(field_mutable:thread_msg.Thread_Data.cluster)
-  return cluster_.Mutable(index);
-}
-inline void Thread_Data::set_cluster(int index, const ::std::string& value) {
+inline void Thread_Data::set_cluster(const ::std::string& value) {
+  set_has_cluster();
+  if (cluster_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    cluster_ = new ::std::string;
+  }
+  cluster_->assign(value);
   // @@protoc_insertion_point(field_set:thread_msg.Thread_Data.cluster)
-  cluster_.Mutable(index)->assign(value);
 }
-inline void Thread_Data::set_cluster(int index, const char* value) {
-  cluster_.Mutable(index)->assign(value);
+inline void Thread_Data::set_cluster(const char* value) {
+  set_has_cluster();
+  if (cluster_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    cluster_ = new ::std::string;
+  }
+  cluster_->assign(value);
   // @@protoc_insertion_point(field_set_char:thread_msg.Thread_Data.cluster)
 }
-inline void Thread_Data::set_cluster(int index, const char* value, size_t size) {
-  cluster_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
+inline void Thread_Data::set_cluster(const char* value, size_t size) {
+  set_has_cluster();
+  if (cluster_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    cluster_ = new ::std::string;
+  }
+  cluster_->assign(reinterpret_cast<const char*>(value), size);
   // @@protoc_insertion_point(field_set_pointer:thread_msg.Thread_Data.cluster)
 }
-inline ::std::string* Thread_Data::add_cluster() {
-  return cluster_.Add();
-}
-inline void Thread_Data::add_cluster(const ::std::string& value) {
-  cluster_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:thread_msg.Thread_Data.cluster)
-}
-inline void Thread_Data::add_cluster(const char* value) {
-  cluster_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:thread_msg.Thread_Data.cluster)
-}
-inline void Thread_Data::add_cluster(const char* value, size_t size) {
-  cluster_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:thread_msg.Thread_Data.cluster)
-}
-inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
-Thread_Data::cluster() const {
-  // @@protoc_insertion_point(field_list:thread_msg.Thread_Data.cluster)
+inline ::std::string* Thread_Data::mutable_cluster() {
+  set_has_cluster();
+  if (cluster_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    cluster_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:thread_msg.Thread_Data.cluster)
   return cluster_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::std::string>*
-Thread_Data::mutable_cluster() {
-  // @@protoc_insertion_point(field_mutable_list:thread_msg.Thread_Data.cluster)
-  return &cluster_;
+inline ::std::string* Thread_Data::release_cluster() {
+  clear_has_cluster();
+  if (cluster_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = cluster_;
+    cluster_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void Thread_Data::set_allocated_cluster(::std::string* cluster) {
+  if (cluster_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete cluster_;
+  }
+  if (cluster) {
+    set_has_cluster();
+    cluster_ = cluster;
+  } else {
+    clear_has_cluster();
+    cluster_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:thread_msg.Thread_Data.cluster)
 }
 
 

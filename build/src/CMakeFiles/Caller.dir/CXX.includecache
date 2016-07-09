@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/mechanic/Desktop/wc/src/homework.cpp
+iostream
+-
+memory
+-
+stdexcept
+-
+thread
+-
+vector
+-
+iomanip
+-
+
